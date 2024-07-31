@@ -1,11 +1,24 @@
+
+name: Our CI
+
 on:
    pull_requests:
    push:
+     branches:
+      - main
    workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-       - run: echo Hello World
+       - uses: actions/checkout@v4
+       - uses: actions/setuo-pythin@v5
+         with:
+           python-version: "3.11"
+      - run: python -m pip install .[test]
+      - run: pythin -m pytest 
+      - name: Run tests
+      - run python -m pytest
+
        
